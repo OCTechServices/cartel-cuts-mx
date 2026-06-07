@@ -1,789 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barbería Cartel Cuts — San Rafael, CDMX</title>
-  <meta name="description" content="Barbería Cartel Cuts — San Rafael, Cuauhtémoc, CDMX. Cómo no somos los únicos, decidimos ser los mejores. Reserva tu cita en línea.">
-  <link rel="icon" href="./logo.png" type="image/png">
-  <!-- Open Graph — rich preview when sharing on WhatsApp / Instagram / iMessage -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Barbería Cartel Cuts — San Rafael, CDMX">
-  <meta property="og:description" content="Cómo no somos los únicos, decidimos ser los mejores. Reserva tu cita en línea — sin esperar.">
-  <meta property="og:image" content="https://cartel-cuts-mx.vercel.app/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <style>
-    :root {
-      --accent: #c9a84c;
-      --accent-dark: #a8832a;
-      --bg: #111111;
-      --surface: #1c1c1c;
-      --surface2: #252525;
-      --text: #f0f0f0;
-      --text-muted: #888888;
-      --radius: 6px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(17,17,17,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #2a2a2a;
-      padding: 0 1.5rem; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-brand img {
-      height: 36px;
-      width: auto;
-      display: block;
-    }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.875rem; }
-    .nav-links a { color: var(--text-muted); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .btn-nav {
-      background: var(--accent); color: #111;
-      font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em;
-      text-transform: uppercase; padding: 0.45rem 1rem;
-      border-radius: var(--radius); transition: background 0.2s;
-    }
-    .btn-nav:hover { background: var(--accent-dark); }
-    @media (max-width: 600px) { .nav-links { display: none; } }
-
-    /* ── HERO ── */
-    #inicio {
-      min-height: 90vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 4rem 1.5rem;
-      background: linear-gradient(to bottom, rgba(17,17,17,0.55), rgba(17,17,17,0.95)),
-        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&q=80') center/cover no-repeat;
-    }
-    .hero-eyebrow {
-      font-size: 0.75rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
-    }
-    .hero-logo {
-      height: 100px;
-      width: auto;
-      margin-bottom: 1.5rem;
-      opacity: 0.95;
-    }
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.02em; margin-bottom: 1rem;
-    }
-    .hero-subtitle {
-      font-size: 1.1rem; color: var(--text-muted);
-      max-width: 500px; margin-bottom: 2.5rem;
-      font-style: italic;
-    }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    .btn-primary {
-      background: var(--accent); color: #111;
-      font-weight: 700; font-size: 0.95rem; letter-spacing: 0.03em;
-      padding: 0.85rem 2rem; border-radius: var(--radius);
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
-    .btn-secondary {
-      border: 1px solid #333; color: var(--text);
-      font-size: 0.95rem; padding: 0.85rem 2rem;
-      border-radius: var(--radius); transition: border-color 0.2s;
-    }
-    .btn-secondary:hover { border-color: #666; }
-
-    /* ── SECTIONS ── */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 900px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.7rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700; margin-bottom: 3rem;
-    }
-
-    /* ── SERVICIOS ── */
-    #servicios { background: var(--surface); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-    .service-card {
-      background: var(--surface2); border: 1px solid #2e2e2e;
-      border-radius: var(--radius); padding: 1.25rem 1.5rem;
-      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-    }
-    .service-name { font-weight: 600; font-size: 0.95rem; }
-    .service-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
-    .service-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
-
-    /* ── NOSOTROS ── */
-    #nosotros .about-body {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center;
-    }
-    #nosotros .about-text p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem; }
-    .about-photo {
-      background: var(--surface); border: 1px solid #2a2a2a;
-      border-radius: var(--radius); aspect-ratio: 4/5; overflow: hidden;
-    }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    @media (max-width: 680px) {
-      #nosotros .about-body { grid-template-columns: 1fr; }
-      .about-photo { aspect-ratio: 16/9; }
-    }
-
-    /* ── HORARIOS ── */
-    #horarios { background: var(--surface); }
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
-    .info-block h3 {
-      font-size: 0.75rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
-    }
-    .hours-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    .hours-table tr { border-bottom: 1px solid #2a2a2a; }
-    .hours-table td { padding: 0.5rem 0; }
-    .hours-table td:last-child { text-align: right; color: var(--text-muted); }
-    .address-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; }
-    .map-link {
-      display: inline-block; margin-top: 1rem; font-size: 0.85rem;
-      color: var(--accent); border-bottom: 1px solid transparent; transition: border-color 0.2s;
-    }
-    .map-link:hover { border-color: var(--accent); }
-
-    /* ── RESEÑAS ── */
-    .rating-banner {
-      background: var(--surface2); border: 1px solid #2e2e2e;
-      border-radius: var(--radius); padding: 1.5rem 2rem;
-      display: flex; align-items: center; gap: 1.5rem;
-      margin-bottom: 3rem; flex-wrap: wrap;
-    }
-    .rating-score { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
-    .rating-stars { font-size: 1.25rem; color: var(--accent); letter-spacing: 0.1em; }
-    .rating-count { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem; }
-
-    /* ── RESERVAR ── */
-    #reservar { text-align: center; padding: 6rem 1.5rem; }
-    #reservar .section-title { margin-bottom: 1rem; }
-    #reservar p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 1rem; }
-    .contact-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-whatsapp {
-      background: #25d366; color: #fff; font-weight: 700; font-size: 0.95rem;
-      padding: 0.85rem 2rem; border-radius: var(--radius);
-      display: flex; align-items: center; gap: 0.5rem; transition: opacity 0.2s;
-    }
-    .btn-whatsapp:hover { opacity: 0.85; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #0a0a0a; border-top: 1px solid #1e1e1e;
-      padding: 2rem 1.5rem; text-align: center;
-    }
-    .footer-inner { max-width: 900px; margin: 0 auto; }
-    .footer-name { font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .footer-meta { font-size: 0.8rem; color: var(--text-muted); }
-    .footer-social { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1rem; }
-    .footer-social a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s; }
-    .footer-social a:hover { color: var(--text); }
-
-    /* ── FLOATING WHATSAPP ── */
-    .fab-whatsapp {
-      position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
-      background: #25d366; color: #fff; width: 56px; height: 56px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(37,211,102,0.4); transition: transform 0.2s;
-    }
-    .fab-whatsapp:hover { transform: scale(1.08); }
-    .fab-whatsapp svg { width: 28px; height: 28px; fill: #fff; }
-
-    /* ── TESTIMONIALS ── */
-    #resenas { background: var(--surface); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-    .testimonial-card {
-      background: var(--bg);
-      border: 1px solid #2a2a2a;
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .testimonial-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .testimonial-text {
-      font-size: 0.93rem; color: var(--text-muted);
-      line-height: 1.75; font-style: italic; margin-bottom: 1.25rem;
-    }
-    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
-    .testimonial-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: var(--surface2); border: 1px solid #2e2e2e;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; font-weight: 700; color: var(--accent);
-      flex-shrink: 0;
-    }
-    .testimonial-name { font-weight: 600; font-size: 0.9rem; }
-    .testimonial-stars { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.05em; }
-    .testimonial-source { font-size: 0.72rem; color: var(--text-muted); }
-
-    /* ── TEAM CARDS ── */
-    .team-section {
-      margin-top: 3rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid #2a2a2a;
-    }
-    .team-section-label {
-      font-size: 0.7rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
-    }
-    .team-cards {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1rem;
-    }
-    @media (max-width: 640px) {
-      .team-cards { grid-template-columns: repeat(3, 1fr); }
-    }
-    .team-card {
-      background: var(--surface2); border: 1px solid #2e2e2e;
-      border-radius: var(--radius); padding: 1.5rem 0.75rem;
-      text-align: center;
-      transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
-    }
-    .team-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    .team-initial {
-      width: 56px; height: 56px; border-radius: 50%;
-      border: 2px solid var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; font-weight: 800; color: var(--accent);
-      margin: 0 auto 0.85rem;
-    }
-    .team-card-name { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
-    .team-card-role { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-
-    /* ── AMENITIES GRID ── */
-    .amenities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 0.75rem;
-      margin-top: 2rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid #2a2a2a;
-    }
-    .amenity-item {
-      display: flex; align-items: center; gap: 0.65rem;
-      padding: 0.75rem 1rem;
-      background: var(--surface2); border: 1px solid #2e2e2e;
-      border-radius: var(--radius);
-    }
-    .amenity-icon { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
-    .amenity-icon svg { width: 100%; height: 100%; display: block; }
-    .amenity-text { font-size: 0.82rem; color: var(--text-muted); }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── SERVICE CARD HOVER ── */
-    .service-card {
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-    }
-    .service-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 28px rgba(201, 168, 76, 0.13);
-      transform: translateY(-3px);
-    }
-
-    /* ── CATALOG CTA ── */
-    .catalog-cta {
-      margin-top: 2.5rem;
-      text-align: center;
-    }
-    .catalog-cta p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.75rem;
-    }
-    .btn-catalog {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: transparent;
-      border: 1.5px solid #25d366;
-      color: #25d366;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 0.75rem 1.75rem;
-      border-radius: var(--radius);
-      transition: background 0.2s, color 0.2s, transform 0.1s;
-    }
-    .btn-catalog:hover {
-      background: #25d366;
-      color: #fff;
-      transform: translateY(-1px);
-    }
-    .btn-catalog svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
-
-    /* ── STICKY BOOKING BAR ── */
-    .sticky-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0; z-index: 150;
-      background: rgba(14, 14, 14, 0.97);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid #2a2a2a;
-      padding: 0.85rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      transform: translateY(100%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .sticky-bar.visible { transform: translateY(0); }
-    .sticky-bar-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-    .sticky-bar-text strong { color: var(--text); font-size: 0.95rem; }
-    .btn-sticky {
-      background: var(--accent); color: #111;
-      font-weight: 700; font-size: 0.82rem;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 0.65rem 1.5rem; border-radius: var(--radius);
-      white-space: nowrap; transition: background 0.2s;
-      flex-shrink: 0;
-    }
-    .btn-sticky:hover { background: var(--accent-dark); }
-    @media (max-width: 480px) {
-      .sticky-bar-text { display: none; }
-      .btn-sticky { width: 100%; text-align: center; padding: 0.75rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Cartel Cuts — San Rafael, CDMX</title>
+<meta name="description" content="Barbería Cartel Cuts — grooming premium en San Rafael, Cuauhtémoc, CDMX. Corte, barba, facial y más. Productos L3VEL3. 5.0 ★ con 193 reseñas. Reserva en línea.">
+<meta property="og:title" content="Barbería Cartel Cuts — San Rafael, CDMX">
+<meta property="og:description" content="Precisión. Estilo. Confianza. Barbería premium en Cuauhtémoc, Ciudad de México.">
+<meta property="og:image" content="https://cartel-cuts-mx.vercel.app/assets/og-image.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="sections.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}.hero h1 .ln>span{transform:none !important}</style></noscript>
 </head>
-<body>
+<body id="top">
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-brand" href="#inicio">
-      <img src="./logo.png" alt="Barbería Cartel Cuts">
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a href="#top" class="brand" aria-label="Cartel Cuts">
+      <span class="lock" aria-hidden="true">
+        <span>C</span>
+        <svg class="sciss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+          <line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/>
+        </svg>
+        <span>C</span>
+      </span>
+      <span class="brand__type">Cartel&nbsp;Cuts</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#horarios">Horarios</a></li>
-    </ul>
-    <a class="btn-nav" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar cita</a>
-  </nav>
 
-  <!-- HERO -->
-  <section id="inicio">
-    <img class="hero-logo" src="./logo.png" alt="Barbería Cartel Cuts">
-    <p class="hero-eyebrow">Barbería en San Rafael, Cuauhtémoc · CDMX</p>
-    <h1 class="hero-title">Cartel Cuts</h1>
-    <p class="hero-subtitle">"Cómo no somos los únicos, decidimos ser los mejores."</p>
-    <div class="hero-ctas">
-      <a class="btn-primary" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar cita</a>
-      <a class="btn-secondary" href="#servicios">Ver servicios</a>
+    <nav class="nav__links" aria-label="Principal">
+      <a class="nav__link" href="#about">Nosotros</a>
+      <a class="nav__link" href="#services">Servicios</a>
+      <a class="nav__link" href="#gallery">Galería</a>
+      <a class="nav__link" href="#reviews">Reseñas</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--gold" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar</a>
     </div>
-  </section>
 
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <div class="container">
-      <p class="section-label">Lo que ofrecemos</p>
-      <h2 class="section-title">Servicios y precios</h2>
-      <div class="services-grid">
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
 
-        <div class="service-card">
-          <div>
-            <div class="service-name">Corte de cabello</div>
-            <div class="service-desc">Tijera o máquina, acabado impecable</div>
-          </div>
-          <div class="service-price">$300</div>
-        </div>
+<!-- mobile menu -->
+<div class="menu" id="menu">
+  <a href="#about"><span>Nosotros</span><span class="n">01</span></a>
+  <a href="#services"><span>Servicios</span><span class="n">02</span></a>
+  <a href="#gallery"><span>Galería</span><span class="n">03</span></a>
+  <a href="#reviews"><span>Reseñas</span><span class="n">04</span></a>
+  <a href="#booking"><span>Reservar</span><span class="n">05</span></a>
+  <div class="menu__foot">
+    <a href="https://www.instagram.com/cartelcutsmx" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar en Booksy</a>
+  </div>
+</div>
 
-        <div class="service-card">
-          <div>
-            <div class="service-name">Corte + barba</div>
-            <div class="service-desc">Corte y perfilado de barba</div>
-          </div>
-          <div class="service-price">$450</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Corte infantil</div>
-            <div class="service-desc">Menores de 12 años</div>
-          </div>
-          <div class="service-price">$230</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Corte de barba</div>
-            <div class="service-desc">Máquina $100 · Navaja recta $230</div>
-          </div>
-          <div class="service-price">$100+</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Ceja</div>
-            <div class="service-desc">Diseño y depilación</div>
-          </div>
-          <div class="service-price">$50</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Pigmentación</div>
-            <div class="service-desc">Pigmentación capilar</div>
-          </div>
-          <div class="service-price">$100</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Facial + mascarilla negra</div>
-            <div class="service-desc">Limpieza profunda de poros</div>
-          </div>
-          <div class="service-price">$150</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Semi ondulación</div>
-            <div class="service-desc">Tratamiento de ondulación</div>
-          </div>
-          <div class="service-price">$1,000</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Diseño de líneas</div>
-            <div class="service-desc">Consultar precio</div>
-          </div>
-          <div class="service-price">consultar</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Color</div>
-            <div class="service-desc">Tinte completo</div>
-          </div>
-          <div class="service-price">desde $1,500</div>
-        </div>
-
-        <div class="service-card">
-          <div>
-            <div class="service-name">Mechas / blanco / platinado</div>
-            <div class="service-desc">Mechas, decoloración o platinado completo</div>
-          </div>
-          <div class="service-price">desde $2,500</div>
-        </div>
-
-      </div>
-
-      <!-- CATÁLOGO WHATSAPP -->
-      <div class="catalog-cta">
-        <a class="btn-catalog" href="https://wa.me/c/5215610499495" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Ver catálogo completo en WhatsApp
-        </a>
-        <p>Fotos de estilos, cortes y más — directo en WhatsApp</p>
-      </div>
-
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero__media">
+    <image-slot id="hero-bg" fit="cover" src="assets/ph/hero.jpg" placeholder="Suelta una imagen cinematografica — barbero trabajando, alto contraste"></image-slot>
+  </div>
+  <div class="hero__in wrap">
+    <div class="hero__eyebrow"><span class="eyebrow">Barberia Premium · San Rafael, CDMX</span></div>
+    <h1 class="display h-hero">
+      <span class="ln"><span>Precision.</span></span>
+      <span class="ln"><span>Estilo.</span></span>
+      <span class="ln"><span>Confianza.</span></span>
+    </h1>
+    <p class="lead hero__sub">Grooming moderno para quienes valoran cada detalle.</p>
+    <div class="hero__cta">
+      <a class="btn btn--gold btn--lg" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar Cita <span class="arr">&#8594;</span></a>
+      <a class="btn btn--ghost btn--lg" href="#services">Ver Servicios</a>
     </div>
-  </section>
+  </div>
+  <div class="hero__bar">
+    <div class="wrap">
+      <span class="scrollcue"><i></i> Desliza</span>
+      <span class="meta">&#9733; 5.0 · 193 resenas · Con cita</span>
+    </div>
+  </div>
+</section>
 
-  <!-- NOSOTROS -->
-  <section id="nosotros">
-    <div class="container">
-      <p class="section-label">Quiénes somos</p>
-      <div class="about-body">
-        <div class="about-text">
-          <h2 class="section-title" style="margin-bottom:1.5rem">Barbería Cartel Cuts</h2>
-
-          <!-- Rating -->
-          <div class="rating-banner">
-            <div class="rating-score">4.96</div>
-            <div>
-              <div class="rating-stars">★★★★★</div>
-              <div class="rating-count">193 reseñas en Booksy</div>
-            </div>
-          </div>
-
-          <p>Somos una barbería en el corazón de San Rafael, Cuauhtémoc. Llevamos el oficio con precisión y orgullo — cada corte, tal cual como lo pides.</p>
-          <br>
-          <a class="btn-primary" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar ahora</a>
+<!-- ===================== ABOUT ===================== -->
+<section class="section about" id="about">
+  <div class="wrap about__grid">
+    <div class="about__copy">
+      <span class="eyebrow reveal">Nuestro Estandar</span>
+      <h2 class="display h-sec reveal" data-d="1">Hechos con<br>consistencia.</h2>
+      <p class="lead reveal" data-d="2">Cartel Cuts nacio de una idea simple: un buen corte nunca debe dejarse al azar. Cada silla, cada barbero, cada visita — al mismo estandar exacto. Tecnica de precision y productos L3VEL3 para un resultado en el que puedes confiar, cuidado hasta el ultimo detalle.</p>
+      <div class="principles reveal" data-d="3">
+        <div class="principle">
+          <span class="pn">01</span>
+          <div><h4>Maestria</h4><p>Barberos con dominio de la tecnica clasica y la precision moderna.</p></div>
         </div>
-        <div class="about-photo">
-          <!-- TODO: reemplazar con foto real del local -->
-          <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&q=80" alt="Interior de Barbería Cartel Cuts">
+        <div class="principle">
+          <span class="pn">02</span>
+          <div><h4>Consistencia</h4><p>El mismo resultado cuidado, en cada visita. Sin sorpresas, solo precision.</p></div>
         </div>
-      <!-- EL EQUIPO -->
-      <div class="team-section">
-        <p class="team-section-label">El equipo</p>
-        <div class="team-cards">
-          <div class="team-card">
-            <div class="team-initial">D</div>
-            <div class="team-card-name">Dan</div>
-            <div class="team-card-role">Barbero</div>
-          </div>
-          <div class="team-card">
-            <div class="team-initial">A</div>
-            <div class="team-card-name">Alberto</div>
-            <div class="team-card-role">Barbero</div>
-          </div>
-          <div class="team-card">
-            <div class="team-initial">F</div>
-            <div class="team-card-name">Fer</div>
-            <div class="team-card-role">Barbero</div>
-          </div>
-          <div class="team-card">
-            <div class="team-initial">J</div>
-            <div class="team-card-name">Jaydy</div>
-            <div class="team-card-role">Barbero</div>
-          </div>
-          <div class="team-card">
-            <div class="team-initial">M</div>
-            <div class="team-card-name">Memo</div>
-            <div class="team-card-role">Barbero</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AMENITIES -->
-      <div class="amenities-grid">
-        <div class="amenity-item">
-          <span class="amenity-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6a8 8 0 0112 0M4.5 8.5a5 5 0 017 0M7 11a2 2 0 012 0M8 13.5h.01"/></svg></span>
-          <span class="amenity-text">WiFi disponible</span>
-        </div>
-        <div class="amenity-item">
-          <span class="amenity-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3.5" width="14" height="9" rx="1.5"/><path d="M1 7h14"/></svg></span>
-          <span class="amenity-text">Tarjeta aceptada</span>
-        </div>
-        <div class="amenity-item">
-          <span class="amenity-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="3" r="1.25"/><path d="M8 5v4l2 2M6 7h3M5 13a3 3 0 006 0"/></svg></span>
-          <span class="amenity-text">Acceso accesible</span>
-        </div>
-        <div class="amenity-item">
-          <span class="amenity-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="14" height="7" rx="1.5"/><path d="M4 5V3.5a.5.5 0 01.5-.5h7a.5.5 0 01.5.5V5M4 12v1M12 12v1"/></svg></span>
-          <span class="amenity-text">Estacionamiento en calle</span>
-        </div>
-        <div class="amenity-item">
-          <span class="amenity-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5 6.5 5 8 2z"/></svg></span>
-          <span class="amenity-text">Programa de lealtad</span>
+        <div class="principle">
+          <span class="pn">03</span>
+          <div><h4>Atencion al detalle</h4><p>La diferencia esta en el acabado. Cuidamos hasta el ultimo milimetro.</p></div>
         </div>
       </div>
     </div>
-  </section>
+    <div class="about__media reveal" data-d="2">
+      <image-slot id="about-portrait" radius="0" src="assets/ph/about.jpg" placeholder="Suelta un retrato — barbero o detalle"></image-slot>
+      <div class="tagchip">&#9733; 5.0 · <b>193 resenas</b> en Booksy</div>
+    </div>
+  </div>
+</section>
 
-  <!-- HORARIOS Y UBICACIÓN -->
-  <section id="horarios">
-    <div class="container">
-      <p class="section-label">Encuéntranos</p>
-      <h2 class="section-title">Horarios y ubicación</h2>
-      <div class="info-grid">
+<!-- ===================== SERVICES ===================== -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">Los Servicios</span>
+        <h2 class="display h-sec reveal" data-d="1">Cada detalle,<br>cuidado.</h2>
+      </div>
+      <p class="sec-head__r muted reveal" data-d="2">Una carta enfocada, ejecutada sin concesiones. Precios en pesos (MXN); la experiencia, todo menos ordinaria.</p>
+    </div>
 
-        <div class="info-block">
-          <h3>Horarios</h3>
-          <table class="hours-table">
-            <tr><td>Lunes – Viernes</td><td>10 AM–9 PM</td></tr>
-            <tr><td>Sábado</td><td>10 AM–5 PM</td></tr>
-            <tr><td>Domingo</td><td>Cerrado</td></tr>
-          </table>
+    <div class="menu-list reveal" data-d="1">
+      <div class="srv">
+        <span class="srv__n">01</span>
+        <div class="srv__main">
+          <div class="srv__name">Corte de cabello</div>
+          <p class="srv__desc">Corte de precision, asesoria y estilizado a la medida de tu rostro.</p>
         </div>
-
-        <div class="info-block">
-          <h3>Dirección</h3>
-          <div class="address-text">
-            Av. Insurgentes Nte. 63<br>
-            Col. San Rafael, Cuauhtémoc<br>
-            Ciudad de México, CP 06470
-          </div>
-          <!-- TODO: reemplazar con link de Google Maps real -->
-          <a class="map-link" href="https://share.google/hkfZazP1snNz9899T" target="_blank" rel="noopener">Ver en Google Maps →</a>
+        <div class="srv__meta"><div class="srv__price">$300</div><div class="srv__dur">50 min</div></div>
+      </div>
+      <div class="srv">
+        <span class="srv__n">02</span>
+        <div class="srv__main">
+          <div class="srv__name">Corte de barba</div>
+          <p class="srv__desc">Navaja, toalla caliente y vaporizadora facial, con pigmentacion a aerografo. Productos L3VEL3.</p>
         </div>
-
+        <div class="srv__meta"><div class="srv__price">$230</div><div class="srv__dur">30 min</div></div>
+      </div>
+      <div class="srv">
+        <span class="srv__n">03</span>
+        <div class="srv__main">
+          <div class="srv__name">Facial &amp; Black Mask</div>
+          <p class="srv__desc">Facial exfoliante y mascarilla negra para limpiar el rostro y retirar el exceso de grasa.</p>
+        </div>
+        <div class="srv__meta"><div class="srv__price">$150</div><div class="srv__dur">15 min</div></div>
+      </div>
+      <div class="srv">
+        <span class="srv__n">04</span>
+        <div class="srv__main">
+          <div class="srv__name">Corte Infantil</div>
+          <p class="srv__desc">El mismo cuidado y precision, pensado para los mas pequenos.</p>
+        </div>
+        <div class="srv__meta"><div class="srv__price">$230</div><div class="srv__dur">50 min</div></div>
+      </div>
+      <div class="srv feature">
+        <span class="srv__n">05</span>
+        <div class="srv__main">
+          <div class="srv__name">Corte + Barba <span class="tag-best">Lo mas pedido</span></div>
+          <p class="srv__desc">Pigmentacion con aerografo, vaporizadora facial, toalla caliente, navaja nueva y bebida a elegir. Productos L3VEL3.</p>
+        </div>
+        <div class="srv__meta"><div class="srv__price">$450</div><div class="srv__dur">1 h 30</div></div>
       </div>
     </div>
-  </section>
+    <p class="muted reveal" data-d="2" style="margin-top:1.6rem;font-size:0.92rem">Tambien: Ceja $50 &middot; Pigmentacion $100 &middot; Color desde $1,500 &middot; <a href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">Carta completa en Booksy</a>.</p>
+  </div>
+</section>
 
-  <!-- RESEÑAS -->
-  <section id="resenas">
-    <div class="container">
-      <p class="section-label">Lo que dicen</p>
-      <h2 class="section-title">Clientes reales, palabras reales</h2>
-      <div class="testimonials-grid">
+<!-- ===================== GALLERY ===================== -->
+<section class="section gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow reveal">El Trabajo</span>
+        <h2 class="display h-sec reveal" data-d="1">Que hable<br>el trabajo.</h2>
+      </div>
+      <p class="sec-head__r muted reveal" data-d="2">Un registro editorial del lugar, el oficio y el acabado.</p>
+    </div>
+    <div class="gal-grid reveal" data-d="1">
+      <image-slot class="g1" id="gal-1" radius="0" src="assets/ph/g1.jpg" placeholder="Editorial amplia — silla / local"></image-slot>
+      <image-slot class="g2" id="gal-2" radius="0" src="assets/ph/g2.jpg" placeholder="Retrato — corte terminado"></image-slot>
+      <image-slot class="g3" id="gal-3" radius="0" src="assets/ph/g3.jpg" placeholder="Detalle — fade"></image-slot>
+      <image-slot class="g4" id="gal-4" radius="0" src="assets/ph/g4.jpg" placeholder="Detalle — barba"></image-slot>
+      <image-slot class="g5" id="gal-5" radius="0" src="assets/ph/g5.jpg" placeholder="Herramientas / textura"></image-slot>
+      <image-slot class="g6" id="gal-6" radius="0" src="assets/ph/g6.jpg" placeholder="Panoramica — interior"></image-slot>
+    </div>
+  </div>
+</section>
 
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Me gustó mucho el corte, tal cual como lo pedí. Dan me dio sugerencias para que quedara mejor."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">D</div>
-            <div>
-              <div class="testimonial-name">Daniel</div>
-              <div class="testimonial-stars">★★★★★ <span class="testimonial-source">· Booksy</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Muy buen servicio, agendo con Jaydy 10/10. Lo mejor es que hace que te sientas relajado durante el corte."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">S</div>
-            <div>
-              <div class="testimonial-name">Sergio</div>
-              <div class="testimonial-stars">★★★★★ <span class="testimonial-source">· Booksy</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <p class="testimonial-text">"Alberto me atendió excelente y el corte quedó increíble."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">H</div>
-            <div>
-              <div class="testimonial-name">Hugo</div>
-              <div class="testimonial-stars">★★★★★ <span class="testimonial-source">· Booksy</span></div>
-            </div>
-          </div>
-        </div>
-
+<!-- ===================== REVIEWS ===================== -->
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="display:flex;justify-content:center">Resenas</span>
+    <div class="rev-hero reveal" data-d="1">
+      <p class="quote">"El corte mas consistente de la ciudad. <span class="accent">La confianza empieza en la silla.</span>"</p>
+      <p class="muted" style="margin-top:1.4rem;letter-spacing:0.04em">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;5.0 · 193 resenas verificadas en Booksy</p>
+    </div>
+    <div class="rev-grid reveal" data-d="2">
+      <div class="rev">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>Muy buen servicio, siempre agendo con Jaydy. Hace que te sientas relajado durante el corte — 10/10, la recomiendo mucho.</p>
+        <div class="who"><b>Sergio</b><span>Cliente confirmado &middot; Corte + Barba</span></div>
+      </div>
+      <div class="rev">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>La atencion de Memo y todo su equipo, excelente. Te atienden increible y el corte queda tal cual lo pediste.</p>
+        <div class="who"><b>Agustin</b><span>Cliente confirmado &middot; Corte + Barba</span></div>
+      </div>
+      <div class="rev">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>Me gusto mucho el corte, tal cual como lo pedi. Ademas me dieron sugerencias para que quedara aun mejor.</p>
+        <div class="who"><b>Daniel</b><span>Cliente confirmado &middot; Corte de cabello</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- RESERVAR -->
-  <section id="reservar">
-    <div class="container">
-      <p class="section-label">Agenda tu cita</p>
-      <h2 class="section-title">¿Listo para tu corte?</h2>
-      <p>Reserva en línea en segundos o escríbenos por WhatsApp.</p>
-      <div class="contact-options">
-        <a class="btn-primary" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar por Booksy</a>
-        <!-- TODO: reemplazar 525610499495 con número real (solo dígitos, sin +) -->
-        <a class="btn-whatsapp" href="https://wa.me/525610499495?text=Hola%2C%20quiero%20agendar%20una%20cita%20en%20Cartel%20Cuts" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          WhatsApp
-        </a>
+<!-- ===================== BOOKING ===================== -->
+<section class="section booking" id="booking">
+  <div class="wrap book-grid">
+    <div class="book-pitch">
+      <span class="eyebrow on-light">Reserva</span>
+      <h2 class="display h-sec">Reserva<br>tu silla.</h2>
+      <p class="lead">Reservamos en linea por Booksy — elige servicio, barbero y horario en segundos, con confirmacion inmediata y recordatorios automaticos.</p>
+      <div class="book-info">
+        <div class="row">
+          <span class="k">Horario</span>
+          <span class="v">Lun&ndash;Vie <b>10 AM&ndash;9 PM</b> &middot; Sab <b>10 AM&ndash;5 PM</b></span>
+        </div>
+        <div class="row">
+          <span class="k">Estudio</span>
+          <span class="v">Insurgentes 63, Col. San Rafael, Cuauhtemoc, 06470, CDMX</span>
+        </div>
+        <div class="row">
+          <span class="k">Llegar</span>
+          <span class="v"><a href="https://share.google/hkfZazP1snNz9899T" target="_blank" rel="noopener" style="color:var(--gold-d);text-decoration:underline;text-underline-offset:3px">Ver en Google Maps &#8594;</a></span>
+        </div>
+        <div class="row">
+          <span class="k">WhatsApp</span>
+          <span class="v"><a href="https://wa.me/c/5215610499495" target="_blank" rel="noopener" style="color:var(--gold-d);text-decoration:underline;text-underline-offset:3px">Ver catalogo de servicios &#8594;</a></span>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-name">Barbería Cartel Cuts</div>
-      <div class="footer-meta">
-        Av. Insurgentes Nte. 63, San Rafael, Cuauhtémoc · CDMX
+    <div class="book-card booky">
+      <div class="booky__head">
+        <span class="booky__rating"><span class="booky__stars">&#9733;</span> <b>5.0</b> &middot; 193 resenas</span>
+        <span class="booky__badge">Reserva 24/7</span>
       </div>
-      <div class="footer-social">
-        <!-- TODO: reemplazar con URLs reales -->
+      <div class="booky__body">
+        <h3 class="booky__title">Reserva en Booksy</h3>
+        <p class="booky__lead">Agenda en menos de un minuto. Confirmacion inmediata, recordatorios automaticos y todo tu historial en un solo lugar.</p>
+        <ol class="booky__steps">
+          <li><span class="booky__num">1</span> Elige tu servicio y a tu barbero</li>
+          <li><span class="booky__num">2</span> Escoge la fecha y la hora disponible</li>
+          <li><span class="booky__num">3</span> Confirma — y listo</li>
+        </ol>
+        <div class="booky__menu">
+          <div class="booky__mlabel">Lo mas reservado</div>
+          <div class="booky__mrow"><span>Corte de cabello</span><b>$300</b></div>
+          <div class="booky__mrow"><span>Corte + Barba</span><b>$450</b></div>
+          <div class="booky__mrow"><span>Corte de barba</span><b>$230</b></div>
+          <div class="booky__mrow"><span>Facial &amp; Black Mask</span><b>$150</b></div>
+        </div>
+      </div>
+      <div class="booky__foot">
+        <a class="btn btn--gold btn--block btn--lg" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar en Booksy <span class="arr">&#8594;</span></a>
+        <a class="booky__alt" href="#services">Ver la carta completa de servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-word reveal">CARTEL<br>CUTS<span class="x">.</span></div>
+    <div class="foot-cols">
+      <div class="foot-col foot-cta">
+        <h5>Reserva</h5>
+        <p class="h-sub display">La confianza empieza en la silla.</p>
+        <a class="tlink" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar cita <span class="arr">&#8594;</span></a>
+      </div>
+      <div class="foot-col">
+        <h5>Horario</h5>
+        <p>Lun&ndash;Vie 10 AM&ndash;9 PM</p>
+        <p>Sab 10 AM&ndash;5 PM</p>
+        <p>Con cita previa</p>
+      </div>
+      <div class="foot-col">
+        <h5>Estudio</h5>
+        <p>Insurgentes 63</p>
+        <p>Col. San Rafael</p>
+        <p>Cuauhtemoc, 06470, CDMX</p>
+      </div>
+      <div class="foot-col">
+        <h5>Siguenos</h5>
+        <a href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Booksy</a>
         <a href="https://www.instagram.com/cartelcutsmx" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/CartelCutsMX/" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://wa.me/525610499495" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://share.google/hkfZazP1snNz9899T" target="_blank" rel="noopener">Como llegar</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="small">&copy; <span id="yr"></span> Barberia Cartel Cuts &middot; San Rafael, CDMX</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/cartelcutsmx" target="_blank" rel="noopener">Instagram</a>
         <a href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Booksy</a>
-      </div>
-      <div class="footer-meta" style="margin-top:1rem">
-        &copy; <span id="year"></span> Barbería Cartel Cuts. Todos los derechos reservados.
+        <a href="https://wa.me/c/5215610499495" target="_blank" rel="noopener">Catalogo</a>
       </div>
     </div>
-  </footer>
-
-  <!-- FLOATING WHATSAPP -->
-  <a class="fab-whatsapp" href="https://wa.me/525610499495?text=Hola%2C%20quiero%20agendar%20una%20cita%20en%20Cartel%20Cuts" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-
-  <!-- STICKY BOOKING BAR -->
-  <div class="sticky-bar" id="stickyBar">
-    <div class="sticky-bar-text">
-      <strong>Barbería Cartel Cuts</strong>
-      San Rafael · Lun–Vie 10 AM–9 PM
-    </div>
-    <a class="btn-sticky" href="https://booksy.com/es-mx/11411_barberia-cartel-cuts_peluqueria_314440_san-rafael" target="_blank" rel="noopener">Reservar cita</a>
   </div>
+</footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Programmatically add reveal to key elements
-    ['.about-body', '.info-grid', '.catalog-cta', '#reservar .container'].forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => el.classList.add('reveal'));
-    });
-    document.querySelectorAll('.service-card').forEach(el => el.classList.add('reveal'));
-
-    // Scroll reveal observer — stagger siblings
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.visible)'));
-        const idx = siblings.indexOf(entry.target);
-        setTimeout(() => entry.target.classList.add('visible'), idx * 70);
-        revealObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // Sticky bar — show when hero leaves viewport
-    const stickyBar = document.getElementById('stickyBar');
-    new IntersectionObserver(([e]) => {
-      stickyBar.classList.toggle('visible', !e.isIntersecting);
-    }, { threshold: 0 }).observe(document.getElementById('inicio'));
-
-    // Count-up animation for rating score
-    const ratingEl = document.querySelector('.rating-score');
-    if (ratingEl) {
-      const target = 4.96;
-      let started = false;
-      new IntersectionObserver(([e]) => {
-        if (!e.isIntersecting || started) return;
-        started = true;
-        let current = 4.5;
-        const step = setInterval(() => {
-          current = Math.min(+(current + 0.02).toFixed(2), target);
-          ratingEl.textContent = current.toFixed(2);
-          if (current >= target) clearInterval(step);
-        }, 18);
-      }, { threshold: 0.5 }).observe(ratingEl);
-    }
-  </script>
-
+<script src="assets/image-slot.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
