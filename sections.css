@@ -35,12 +35,8 @@ image-slot::part(empty) { color: rgba(245, 243, 239, 0.50); }
 .nav.scrolled .nav__in { height: 66px; }
 
 .brand { display: inline-flex; align-items: center; gap: 0.62rem; }
-.brand .lock {
-  display: inline-flex; align-items: center; gap: 0.12em;
-  font-weight: 800; font-size: 1.22rem; line-height: 0.8; letter-spacing: -0.02em;
-  color: var(--fg); flex: none;
-}
-.brand .sciss { width: 0.82em; height: 0.82em; color: var(--fg); flex: none; transform: translateY(1px); }
+.brand__mark-img { height: 26px; width: auto; display: block; flex: none; transition: height 0.5s var(--ease); }
+.nav.scrolled .brand__mark-img { height: 23px; }
 .brand__type {
   font-weight: 800; font-size: 0.86rem; letter-spacing: 0.2em;
   text-transform: uppercase; line-height: 1; padding-top: 2px;
@@ -140,7 +136,7 @@ body.menu-open .menu a { transform: none; opacity: 1; }
 @media (prefers-reduced-motion: reduce){ .scrollcue i::after{ animation:none } }
 
 /* ===================== ABOUT ===================== */
-.about__grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+.about__grid { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: end; }
 .about__copy .h-sec { margin: 1.5rem 0 1.6rem; }
 .principles { margin-top: 2.8rem; border-top: 1px solid var(--line); }
 .principle { display: grid; grid-template-columns: auto 1fr; gap: 1.4rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
@@ -150,7 +146,7 @@ body.menu-open .menu a { transform: none; opacity: 1; }
 .about__media { position: relative; }
 .about__media image-slot { width: 100%; aspect-ratio: 4 / 5; }
 .about__media .tagchip {
-  position: absolute; left: -1px; bottom: 1.4rem; background: var(--ink);
+  position: relative; left: -1px; margin-top: 1rem; background: var(--ink);
   border: 1px solid var(--line); padding: 0.9rem 1.3rem;
   font-size: 0.7rem; letter-spacing: var(--tr-nav); text-transform: uppercase; color: var(--fg-soft);
 }
@@ -170,7 +166,7 @@ body.menu-open .menu a { transform: none; opacity: 1; }
   transition: padding 0.5s var(--ease);
 }
 .srv::before {
-  content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(184,148,95,0.06), transparent 60%);
+  content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(189,188,183,0.06), transparent 60%);
   opacity: 0; transition: opacity 0.5s var(--ease); pointer-events: none;
 }
 .srv:hover::before { opacity: 1; }
@@ -184,7 +180,7 @@ body.menu-open .menu a { transform: none; opacity: 1; }
 .srv__meta { text-align: right; flex: none; }
 .srv__price { font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 700; letter-spacing: -0.01em; }
 .srv__dur { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute-d); margin-top: 0.3rem; }
-.srv.feature { background: linear-gradient(100deg, rgba(184,148,95,0.10), rgba(184,148,95,0.02)); }
+.srv.feature { background: linear-gradient(100deg, rgba(189,188,183,0.10), rgba(189,188,183,0.02)); }
 .srv.feature .srv__name { color: var(--fg); }
 .srv .tag-best { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #120d05; background: var(--accent); padding: 0.28em 0.6em; border-radius: 2px; margin-left: 0.9rem; vertical-align: middle; font-weight: 700; }
 
@@ -247,7 +243,8 @@ body.menu-open .menu a { transform: none; opacity: 1; }
 .booky__mrow:last-child { border-bottom: 0; }
 .booky__mrow b { font-weight: 700; }
 .booky__foot { padding: clamp(1.4rem, 3vw, 2.2rem); border-top: 1px solid var(--line-dk); margin-top: auto; }
-.booky__foot .btn { box-shadow: 0 14px 34px -18px rgba(184,148,95,0.8); }
+.booky__foot .btn { background: var(--ink); color: var(--paper); box-shadow: 0 16px 40px -20px rgba(0,0,0,0.55); }
+.booky__foot .btn:hover { background: var(--char); }
 .booky__alt { display: block; text-align: center; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--on-light-s); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(0,0,0,0.2); transition: color 0.3s; }
 .booky__alt:hover { color: var(--on-light); text-decoration-color: currentColor; }
 
